@@ -1,6 +1,7 @@
 import {
   BadRequestException,
   Injectable,
+  Logger,
   NotFoundException,
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -29,11 +30,9 @@ export class PlayerService {
   }
 
   async findById(id: number): Promise<Player> {
-    console.log({ id });
     const player = await this.playerRepository.findOne({
       where: { id },
     });
-    console.log({ player });
     if (!player) {
       throw new NotFoundException('Player not found');
     }

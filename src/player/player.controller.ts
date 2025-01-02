@@ -61,7 +61,6 @@ export class PlayerController {
   async findById(
     @Param() params: FindPlayerByIdDto, // Validate the id parameter using the DTO
   ) {
-    console.log('id', params.id);
     const player = await this.playerService.findById(params.id);
     return { data: player };
   }

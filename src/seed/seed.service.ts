@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Player } from '../player/player.entity';
 import { Repository } from 'typeorm';
@@ -16,7 +16,7 @@ export class SeedService {
       !Array.isArray(jsonData.players) ||
       jsonData.players.length === 0
     ) {
-      console.error('No players found in the provided JSON data.');
+      Logger.error('No players found in the provided JSON data.');
       return;
     }
 
@@ -35,10 +35,10 @@ export class SeedService {
         failedPlayers.push({ playerData, error: error.message });
       }
     }
-    
-    console.log(`Successfully imported ${successfulPlayers.length} players.`);
+
+    Logger.log(`Successfully imported ${successfulPlayers.length} players.`);
     if (failedPlayers.length > 0) {
-      console.warn(
+      Logger.warn(
         `${failedPlayers.length} players failed to import. Errors:`,
         failedPlayers,
       );
