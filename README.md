@@ -49,6 +49,6 @@ https://tennis-api-production.up.railway.app/api-docs
   Cependant, à l'avenir, je prévois de migrer vers une base de données MySQL et de structurer les données en trois entités Player, Country et PlayerData avec des relations bien définies(expliquées dans le diagramme suivant).
   Cette approche permettra de mieux gérer des volumes de données plus importants et d'assurer une scalabilité optimale.
 
-![alt text](diagramme.png)
+![alt text](./src/assets/diagramme.png)
 
 - Utilisation d'un Dockerfile et Docker Compose pour standardiser l'environnement, éviter les problèmes de versions, et gérer les services, comme la base de données, de manière isolée et reproductible.
