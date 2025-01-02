@@ -13,7 +13,7 @@ async function bootstrap() {
   const seedService = app.get(SeedService);
   const jsonData = JSON.parse(fs.readFileSync('./src/seed/data.json', 'utf-8'));
   await seedService.importJsonData(jsonData);
-  app.setGlobalPrefix('api');
+  app.setGlobalPrefix('api', { exclude: ['/'] });
 
   const config = new DocumentBuilder()
     .setTitle('Tennis ')
