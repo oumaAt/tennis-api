@@ -1,5 +1,13 @@
-import { Controller, Get, HttpCode, Param } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  HttpCode,
+  Param,
+  UsePipes,
+  ValidationPipe,
+} from '@nestjs/common';
 import { PlayerService } from './player.service';
+import { FindPlayerByIdDto } from './player.dto';
 
 @Controller('players')
 export class PlayerController {
@@ -20,9 +28,12 @@ export class PlayerController {
   }
 
   @Get(':id')
-  @HttpCode(200)
-  async findById(@Param() id: number) {
-    const player = await this.playerService.findById(id);
+  @UsePipes(new ValidationPipe({ transform: true }))
+  async findById(
+    @Param() params: FindPlayerByIdDto, // Validate the id parameter using the DTO
+  ) {
+    console.log('id', params.id);
+    const player = await this.playerService.findById(params.id);
     return { data: player };
   }
 }
