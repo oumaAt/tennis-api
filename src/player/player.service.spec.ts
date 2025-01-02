@@ -181,7 +181,7 @@ describe('PlayerService', () => {
       mockRepository.find.mockResolvedValue([invalidPlayer]);
 
       await expect(playerService.getStatistics()).rejects.toThrow(
-        new BadRequestException('Invalid height for player 52'),
+        new BadRequestException('Invalid height found'),
       );
     });
 
