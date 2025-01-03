@@ -15,6 +15,15 @@ import { ApiOperation, ApiParam, ApiResponse, ApiTags } from '@nestjs/swagger';
 export class PlayerController {
   constructor(private readonly playerService: PlayerService) {}
 
+  @ApiResponse({
+    status: 200,
+    description: 'Players details retrieved successfully.',
+  })
+  @ApiResponse({
+    status: 404,
+    description:
+      'No Player is found.',
+  })
   @ApiOperation({
     summary: 'Return list of players sorted by rank',
     description: 'Retrieve players details .',
@@ -26,6 +35,15 @@ export class PlayerController {
     return { data: players };
   }
 
+  @ApiResponse({
+    status: 200,
+    description:
+      'Statictics : (Country with the highest ratio of games won, Average BMI of all players, Median player height).',
+  })
+  @ApiResponse({
+    status: 400,
+    description: 'Error occured when calculating statictics.',
+  })
   @ApiOperation({
     summary: 'Statistics',
     description: 'Calculate statistics .',
@@ -44,6 +62,10 @@ export class PlayerController {
   @ApiResponse({
     status: 404,
     description: 'Player not found.',
+  })
+  @ApiResponse({
+    status: 400,
+    description: 'Error occured retrieving player details.',
   })
   @Get(':id')
   @ApiOperation({
