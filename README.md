@@ -1,54 +1,46 @@
-## Technologies
+# Tennis API
 
-- NestJS avec typeORM
-- SQLite
+A REST API for managing tennis player rankings and statistics, built with NestJS and TypeORM.
 
-## Project setup
+🚀 **Live demo:** https://tennis-api-production.up.railway.app
+📄 **Swagger UI:** https://tennis-api-production.up.railway.app/api-docs
 
-```bash
-$ npm install
-```
+## Tech Stack
 
-## Compile and run the project
+- **NestJS** with TypeORM
+- **SQLite** — lightweight storage, single-entity model
+- **Swagger** — auto-generated API documentation
+- **Railway** — cloud deployment
 
-```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-```
-
-## Run tests
+## Getting Started
 
 ```bash
-# unit tests
-$ npm run test
+npm install
+npm run start:dev
 ```
+
+## Running Tests
 
 ```bash
-# pour exécuter les e2e tests, veuillez mettre NODE_DEV test dans le fichier .env
-# e2e tests
-$ npm run test:e2e
+# Unit tests
+npm run test
+
+# E2E tests (requires NODE_ENV=test in .env)
+npm run test:e2e
 ```
 
-## Déploiement
+## Design Decisions & Improvements
 
-Ce projet est déployé sur [Railway](https://railway.app). Vous pouvez y accéder en utilisant l'URL suivante :
-https://tennis-api-production.up.railway.app
+### Current Data Model
 
-## API Documentation
+SQLite was chosen for its simplicity and to match the provided data format. A single entity covers all the data needed at this stage.
 
-La documentation complète de l'API est disponible via Swagger. Vous pouvez y accéder en utilisant l'URL suivante :
-https://tennis-api-production.up.railway.app/api-docs
+### Planned Migration
 
-## Améliorations
-
-- Modélisation :
-  J'ai choisi SQLite pour sa simplicité, pour respecter le format de données que vous m'avez donner et parce qu'une seule entité suffisait pour stocker toutes les données nécessaires à ce stade du projet.
-  Cependant, à l'avenir, je prévois de migrer vers une base de données MySQL et de structurer les données en trois entités Player, Country et PlayerData avec des relations bien définies(expliquées dans le diagramme suivant).
-  Cette approche permettra de mieux gérer des volumes de données plus importants et d'assurer une scalabilité optimale.
+For production scale, the architecture would move to **MySQL** with three normalized entities — `Player`, `Country` and `PlayerData` — with well-defined relationships to handle larger data volumes and ensure scalability.
 
 ![alt text](./src/assets/diagramme.png)
 
-- Utilisation d'un Dockerfile et Docker Compose pour standardiser l'environnement, éviter les problèmes de versions, et gérer les services, comme la base de données, de manière isolée et reproductible.
+### Infrastructure
+
+Adding a **Dockerfile and Docker Compose** setup would standardize the environment, prevent version conflicts, and isolate services like the database for reproducible builds across dev, staging and production.
